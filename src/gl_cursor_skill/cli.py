@@ -24,7 +24,7 @@ from .core import (
 
 app = typer.Typer(
     add_completion=False,
-    help="Install AI-agent skills between Claude, Codex, Cursor, and project scopes.",
+    help="Install AI-agent skills between Claude Code, Codex, OpenCode, and project scopes.",
     no_args_is_help=True,
 )
 console = Console()

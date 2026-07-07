@@ -1,7 +1,7 @@
 [project]
 name = "gl-cursor-skill"
-version = "0.1.1"
-description = "Move and install AI agent skills between Claude, Codex, Cursor, and project scopes."
+version = "0.2.0"
+description = "Move and install AI agent skills between Claude Code, Codex, OpenCode, and project scopes."
 readme = "README.md"
 requires-python = ">=3.10"
 license = "MIT"

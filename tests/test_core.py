@@ -25,6 +25,14 @@ def test_normalize_agent_aliases() -> None:
     assert normalize_agent("codex").key == "codex"
     assert normalize_agent("claudecode").key == "claude-code"
     assert normalize_agent("claude").key == "claude-code"
+    assert normalize_agent("opencode").key == "opencode"
+    assert normalize_agent("open-code").key == "opencode"
+
+
+def test_opencode_uses_xdg_config_global_dir() -> None:
+    opencode = normalize_agent("opencode")
+    assert opencode.global_dir.parts[-3:] == (".config", "opencode", "skills")
+    assert opencode.project_dir.as_posix() == ".opencode/skills"
 
 
 def test_normalize_scope() -> None:

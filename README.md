@@ -15,8 +15,8 @@ When options are omitted in an interactive terminal, the CLI asks where to insta
 ```text
 ? Install for which agent?
   Codex
-  Cursor
   Claude Code
+  OpenCode
 
 ? Install scope?
   Global
@@ -35,9 +35,9 @@ uvx gl-cursor-skill add cursor-agent --agent codex --scope global --from bundled
 | --- | --- | --- |
 | Codex | `~/.codex/skills` | `.codex/skills` |
 | Claude Code | `~/.claude/skills` | `.claude/skills` |
-| Cursor | `~/.cursor/skills` | `.cursor/skills` |
+| OpenCode | `~/.config/opencode/skills` | `.opencode/skills` |
 
-`claude` and `claudecode` are accepted aliases for `claude-code`.
+`claude` and `claudecode` are accepted aliases for `claude-code`. `open-code` is an alias for `opencode`.
 
 ## Commands
 

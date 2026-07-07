@@ -32,10 +32,11 @@ AGENTS: tuple[AgentProfile, ...] = (
         aliases=("claude", "claudecode", "claude_code"),
     ),
     AgentProfile(
-        key="cursor",
-        label="Cursor",
-        global_dir=home() / ".cursor" / "skills",
-        project_dir=Path(".cursor") / "skills",
+        key="opencode",
+        label="OpenCode",
+        global_dir=home() / ".config" / "opencode" / "skills",
+        project_dir=Path(".opencode") / "skills",
+        aliases=("open-code",),
     ),
 )
 
