@@ -99,3 +99,11 @@ def test_resolve_source_candidates_from_parent_from_path(tmp_path: Path) -> None
 
     assert len(candidates) == 1
     assert candidates[0].path == source
+
+
+def test_resolve_source_candidates_from_bundled() -> None:
+    candidates = resolve_source_candidates("cursor-agent", source="bundled")
+
+    assert len(candidates) == 1
+    assert candidates[0].path.name == "cursor-agent"
+    assert (candidates[0].path / "SKILL.md").is_file()

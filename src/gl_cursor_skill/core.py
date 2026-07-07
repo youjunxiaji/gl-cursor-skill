@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from importlib.resources import files
 from pathlib import Path
 import shutil
 
@@ -74,13 +75,20 @@ def normalize_scope(value: str) -> str:
 
 def known_source_dirs(project_root: Path | None = None) -> list[SkillCandidate]:
     root = project_root.expanduser() if project_root is not None else Path.cwd()
-    candidates: list[SkillCandidate] = []
+    candidates: list[SkillCandidate] = bundled_source_dirs()
 
     for agent in AGENTS:
         candidates.append(SkillCandidate(agent.global_dir, f"{agent.label} global"))
         candidates.append(SkillCandidate(root / agent.project_dir, f"{agent.label} project"))
 
     return candidates
+
+
+def bundled_source_dirs() -> list[SkillCandidate]:
+    bundled = files("gl_cursor_skill").joinpath("bundled_skills")
+    if not bundled.is_dir():
+        return []
+    return [SkillCandidate(Path(str(bundled)), "Bundled")]
 
 
 def resolve_source_candidates(
@@ -123,10 +131,13 @@ def _source_search_dirs(source: str | None, project_root: Path | None) -> list[S
     if source is None:
         return known_source_dirs(project_root)
 
+    if source.strip().lower() == "bundled":
+        return bundled_source_dirs()
+
     try:
         agent = normalize_agent(source)
     except ValueError as error:
-        raise SkillError(str(error)) from error
+        raise SkillError(f"{error}. You can also pass --from bundled or --from /path/to/skills.") from error
 
     root = project_root.expanduser() if project_root is not None else Path.cwd()
     return [

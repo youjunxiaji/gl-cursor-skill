@@ -115,7 +115,7 @@ def add(
         None,
         "--from",
         "-f",
-        help="Source agent or path. Examples: claude, codex, cursor, /path/to/skill.",
+        help="Source agent or path. Examples: bundled, claude, codex, cursor, /path/to/skill.",
     ),
     project_dir: Optional[Path] = typer.Option(
         None,

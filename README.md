@@ -8,6 +8,8 @@ Primary usage:
 uvx gl-cursor-skill add cursor-agent
 ```
 
+The `cursor-agent` skill is bundled with this package, so the command works even when the source skill does not already exist on the machine.
+
 When options are omitted in an interactive terminal, the CLI asks where to install:
 
 ```text
@@ -24,7 +26,7 @@ When options are omitted in an interactive terminal, the CLI asks where to insta
 For scripts, pass the choices explicitly:
 
 ```bash
-uvx gl-cursor-skill add cursor-agent --agent codex --scope global --from claude --yes
+uvx gl-cursor-skill add cursor-agent --agent codex --scope global --from bundled --yes
 ```
 
 ## Supported Targets
@@ -53,6 +55,9 @@ uvx gl-cursor-skill add cursor-agent
 
 # Non-interactive install from Claude global skills into Codex global skills
 uvx gl-cursor-skill add cursor-agent --agent codex --scope global --from claude --yes
+
+# Non-interactive install from the bundled cursor-agent skill
+uvx gl-cursor-skill add cursor-agent --agent codex --scope global --from bundled --yes
 
 # Install from an explicit local path
 uvx gl-cursor-skill add /path/to/cursor-agent --agent codex --scope global --yes
