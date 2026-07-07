@@ -78,34 +78,8 @@ uv run gl-cursor-skill --help
 uv build
 ```
 
-## Release From GitHub
+## Releasing
 
-The repository includes GitHub Actions workflows:
+CI (`.github/workflows/ci.yml`) tests and builds on every push and PR. Publishing to PyPI (`.github/workflows/publish.yml`) runs automatically when a GitHub Release is published — PyPI Trusted Publishing is already configured, so no token is needed.
 
-- `.github/workflows/ci.yml` runs tests and builds the package on push and pull requests.
-- `.github/workflows/publish.yml` publishes to PyPI when a GitHub Release is published.
-
-Recommended setup:
-
-1. Create a GitHub repository and push this project.
-2. On PyPI, configure a Trusted Publisher for project `gl-cursor-skill`.
-3. Use these PyPI Trusted Publisher values:
-
-```text
-Owner: <your GitHub username or org>
-Repository name: <your repo name>
-Workflow name: publish.yml
-Environment name: pypi
-```
-
-4. For each release, bump the version in `pyproject.toml`, tag the commit as `vX.Y.Z`, and publish a GitHub Release from that tag.
-
-The workflow checks that the release tag matches the package version. For example, version `0.1.0` must be released with tag `v0.1.0`.
-
-Manual local publish also works:
-
-```bash
-UV_PUBLISH_TOKEN="pypi-..." uv publish
-```
-
-If you configure PyPI Trusted Publishing in CI, `uv publish` can run without a token.
+To cut a release: bump the version in `pyproject.toml` and `src/gl_cursor_skill/__init__.py`, then publish a GitHub Release tagged `vX.Y.Z`. The tag must match the package version (e.g. `0.2.0` → `v0.2.0`), or the publish workflow fails its check.
