@@ -1,0 +1,33 @@
+[project]
+name = "gl-cursor-skill"
+version = "0.1.0"
+description = "Move and install AI agent skills between Claude, Codex, Cursor, and project scopes."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+authors = [
+  { name = "gulei" }
+]
+dependencies = [
+  "questionary>=2.1.0",
+  "rich>=13.7.0",
+  "typer>=0.16.0",
+]
+
+[project.urls]
+Homepage = "https://pypi.org/project/gl-cursor-skill/"
+
+[project.scripts]
+gl-cursor-skill = "gl_cursor_skill.cli:main"
+
+[dependency-groups]
+dev = [
+  "pytest>=8.2.0",
+]
+
+[build-system]
+requires = ["hatchling>=1.26"]
+build-backend = "hatchling.build"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
